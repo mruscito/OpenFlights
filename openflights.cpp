@@ -8,7 +8,6 @@ OpenFlights::OpenFlights(const string &airportFile, const string &routeFile) {
     airportFile_ = airportFile;
     routeFile_ = routeFile;
     constructMap();
-    
 }
 
 //  constructor helper
