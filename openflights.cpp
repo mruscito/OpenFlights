@@ -103,13 +103,24 @@ vector<string> OpenFlights::BFS(int start, int destination) {
     }
     return path;
 }
-/*
+
 vector<string> OpenFlights::dijkstra(int start, int destination) {
-    //To Do: must calculate and save weight of each edge during traversal
-    vector<string> T;
-    return T;
+    vector<bool> visited(12058);    //  highest airport ID #
+    vector<double> distanceFromStart(12058);    //  total distance from start to current airport
+    queue<node> unvisited;   //  queue with all unvisited airports
+    //  initializations
+    for (auto it=flightMap_.airportMap.begin(); it!=flightMap_.airportMap.end(); it++) {
+        distanceFromStart[it->first] = INT_MAX;
+        unvisited.push(it->second);
+    }
+    distanceFromStart[start] = 0;
+
+    while (!unvisited.empty()) {
+        //not finished
+    }
+
 }
-*/
+
 // Takes single CSV line and seperates values in vector
 // Also sanitizes quotation marks from output vector
 // Input example: " item1, "item2", ... "

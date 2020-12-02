@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <map>
 #include <vector>
+#include <cmath>
 #include "edge.h"
 
 using namespace std;
@@ -38,5 +39,5 @@ class FlightMap {
         void insertEdge(vector<string> line);
 
     private:
-
+        double findDistance(int start, int dest);
 };

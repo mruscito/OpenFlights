@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <limits.h>
 
 using namespace std;
 
@@ -17,7 +18,7 @@ class Edge {
     public:
         //  Constructor without given weight
         Edge(int s, int d)
-            : source(s), dest(d), weight(-1)
+            : source(s), dest(d), weight(INT_MAX)
             {};
         
         //  Constructor with given weight
