@@ -1,11 +1,11 @@
 #pragma once
-#include <iostream>
 #include <unordered_map>
 #include <fstream>
 #include <vector>
 #include <map>
 #include <queue>
 #include <stack>
+#include <tuple>
 #include "flightmap.h"
 
 using namespace std;
@@ -22,7 +22,7 @@ class OpenFlights {
     public:
         OpenFlights(const string &airportFile, const string &routeFile);
         vector<string> BFS(int start, int destination);
-        vector<string> dijkstra(int start, int destination);
+        tuple<vector<string>,double> dijkstra(int start, int destination);
     
     private:
         string airportFile_;

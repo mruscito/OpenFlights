@@ -104,22 +104,67 @@ vector<string> OpenFlights::BFS(int start, int destination) {
     return path;
 }
 
-vector<string> OpenFlights::dijkstra(int start, int destination) {
-    vector<bool> visited(12058);    //  highest airport ID #
+//  Performs Dijkstra's algorithm to find shortest path between start and destination airports
+tuple<vector<string>,double> OpenFlights::dijkstra(int start, int destination) {
     vector<double> distanceFromStart(12058);    //  total distance from start to current airport
-    queue<node> unvisited;   //  queue with all unvisited airports
-    //  initializations
+    vector<int> previous(12058); //  maintains previous airport visited (with shortest distance to start)
+    vector<int> unvisited;   //  all unvisited airports
+
     for (auto it=flightMap_.airportMap.begin(); it!=flightMap_.airportMap.end(); it++) {
-        distanceFromStart[it->first] = INT_MAX;
-        unvisited.push(it->second);
+        distanceFromStart[it->first] = INT_MAX; //  set all distances to infinity
+        unvisited.push_back(it->first);
     }
-    distanceFromStart[start] = 0;
+    distanceFromStart[start] = 0;   //  distance from start to start
+    previous[start] = start;    //  initialize starting airport to start
 
+    int current;    //  unvisited airport with shortest distanceFromStart
     while (!unvisited.empty()) {
-        //not finished
+        double minDistance = INT_MAX;   //  minimum distance from start
+        int minIndex;   //  index into unvisited of node with shortest distance from start
+        for (size_t i=0; i<unvisited.size(); i++) { // find node in unvisited with min distanceFromStart
+            if (distanceFromStart[unvisited[i]] < minDistance) {
+                minDistance = distanceFromStart[unvisited[i]];
+                minIndex = i;
+            }
+        }
+        current = unvisited[minIndex];  //  update current
+        unvisited.erase(unvisited.begin()+minIndex);    //  remove current from unvisited
+        if (current == destination) //  end search if destination has minimum distance
+            break;
+        for (auto it=flightMap_.airportMap[current].departures.begin(); it!=flightMap_.airportMap[current].departures.end(); it++) {    //  search all departures from current airport
+            double newDistance = distanceFromStart[current] + (it->second).getWeight(); //  distanceFromStart through current to departure airport
+            if (newDistance < distanceFromStart[it->first]) {   //  update distance if shorter flight
+                distanceFromStart[it->first] = newDistance;
+                previous[it->first] = current;  //  update previous airport visited
+            }
+        }
     }
 
+    if (current != destination) { //  no path could be found between start and destination
+        tuple<vector<string>,double> T;
+        return T;
+    }
+
+    //  trace back path from destination to start
+    stack<int> pathId;
+    while (current != start) {
+        pathId.push(current);
+        current = previous[current];
+    }
+    pathId.push(start);
+
+    //  convert airport IDs to Airport Code
+    vector<string> path;
+    while (!pathId.empty()) {
+        int ap = pathId.top();
+        path.push_back(flightMap_.idToCodeMap[ap]);  //  To Do: add city or name (change path to vector<pair<string, string>>)
+        pathId.pop();
+    }
+    tuple<vector<string>,double> shortestPath(path, distanceFromStart[destination]);    //  create tuple of path and total distance
+    return shortestPath;
 }
+
+
 
 // Takes single CSV line and seperates values in vector
 // Also sanitizes quotation marks from output vector
