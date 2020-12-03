@@ -15,8 +15,6 @@ OpenFlights::OpenFlights(const string &airportFile, const string &routeFile) {
 void OpenFlights::constructMap(){
     insertAirports();
     insertFlights();
-    
-    // TO DO: create functions to convert City names (or airport IATA codes) to airport Ids (probably done in flightmap insertAiports)
 }
 
 //  adds airports to map
