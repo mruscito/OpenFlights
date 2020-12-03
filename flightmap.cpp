@@ -5,10 +5,17 @@ void FlightMap::insertNode(vector<string> line) {
     airport.id = atoi(line[AIRPORT_ID].c_str());
     airport.latitude = atof(line[AIRPORT_LATITUDE].c_str());
     airport.longitude = atof(line[AIRPORT_LONGITUDE].c_str());
-    airport.code = line[AIRPORT_IATA];
-    airport.city = line[AIRPORT_CITY];
+    string city, code;
+    city = line[AIRPORT_CITY];
+    code = line[AIRPORT_IATA];
+    transform(city.begin(), city.end(), city.begin(), [](unsigned char c){return toupper(c); });
+    transform(code.begin(), code.end(), code.begin(), [](unsigned char c){return toupper(c); });
+    airport.code = code;
+    airport.city = city;
     airportMap.insert(pair<int, node>(airport.id, airport));
     idToCodeMap.insert(pair<int, string>(airport.id, airport.code));
+    codeToIdMap.insert(pair<string, int>(airport.code, airport.id));
+    cityToIdMap.insert(pair<string, int>(airport.city, airport.id));
 }
 
 void FlightMap::insertEdge(vector<string> line) {

@@ -7,7 +7,6 @@
 #include <stack>
 #include <tuple>
 #include "flightmap.h"
-
 using namespace std;
 
 enum airlineCSVMeanings {
@@ -23,6 +22,7 @@ class OpenFlights {
         OpenFlights(const string &airportFile, const string &routeFile);
         vector<string> BFS(int start, int destination);
         tuple<vector<string>,double> dijkstra(int start, int destination);
+        int convertToId(string location);
     
     private:
         string airportFile_;

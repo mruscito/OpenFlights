@@ -164,7 +164,16 @@ tuple<vector<string>,double> OpenFlights::dijkstra(int start, int destination) {
     return shortestPath;
 }
 
-
+int OpenFlights::convertToId(string location) {
+    unordered_map<string, int>::iterator it;
+    int id = -1;
+    transform(location.begin(), location.end(), location.begin(), [](unsigned char c){return toupper(c); });
+    it = flightMap_.codeToIdMap.find(location);
+    if (it != flightMap_.codeToIdMap.end()) {
+        id = it->second;
+    }
+    return id;
+}
 
 // Takes single CSV line and seperates values in vector
 // Also sanitizes quotation marks from output vector
