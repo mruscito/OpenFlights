@@ -1,0 +1,10 @@
+CMI
+NA
+NA
+NA
+SMF
+
+// The program will first scan for starting location. If location is invalid, it will continue to scan for next valid input.
+// After a valid input, the program will scan scan again for destination using step 1.
+// Program will stop scanning as soon as it finds 2 valid inputs
+// NA is an invalid input

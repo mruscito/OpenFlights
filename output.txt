@@ -1,0 +1,8 @@
+For the least number of connecting flights, the airports you should fly to are: 
+CMI -> ORD -> SMF
+
+For the shortest distance traveled, the airports you should fly to are: 
+CMI -> ORD -> SMF
+
+Total distance of flights: 3077.71 kilometers
+
