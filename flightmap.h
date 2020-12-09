@@ -37,7 +37,6 @@ class FlightMap {
         map<int, node> airportMap;
         unordered_map<int, string> idToCodeMap; //  converts airport ID to aiport IATA code
         unordered_map<string, int> codeToIdMap; //  converts airport IATA code to ID
-        unordered_multimap<string, int> cityToIdMap; //  converts airport city code to ID
         
         void insertNode(vector<string> line);
         void insertEdge(vector<string> line);

@@ -21,6 +21,7 @@ int main(){
     //if (start < 0)  // checks if there is a valid input for starting location
     //    cout<<"Sorry, that airport does not seem to exist"<<endl;
     } while (start < 0);
+    cout<<"Starting Location: "<<startLocation<<endl;
 
     // Get final destination
     string destLocation;
@@ -31,11 +32,12 @@ int main(){
     //if (dest < 0)  // checks if there is a valid input for destination
     //    cout<<"Sorry, that airport does not seem to exist"<<endl;
     } while (dest < 0);
+    cout<<"Final Destination: "<<destLocation<<endl;
     cout<<endl;
 
     // perform BFS
     cout<<"For the least number of connecting flights, the airports you should fly to are: "<<endl;
-    vector<string> bfs = newFlights.BFS(start, dest);
+    vector<string> bfs = newFlights.BFS(start); //, dest);
     for (size_t i=0; i<bfs.size()-1; i++)
         cout<<bfs[i]<<" -> ";
     cout<<bfs[bfs.size()-1]<<endl;

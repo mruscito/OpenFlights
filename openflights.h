@@ -20,8 +20,10 @@ enum airlineCSVMeanings {
 class OpenFlights {
     public:
         OpenFlights(const string &airportFile, const string &routeFile);
+        vector<string> BFS(int start);
         vector<string> BFS(int start, int destination);
         tuple<vector<string>,double> dijkstra(int start, int destination);
+        tuple<vector<string>,double> landmark(int start, int landmark, int destination);
         int convertToId(string location);
     
     private:

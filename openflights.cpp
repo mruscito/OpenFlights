@@ -49,7 +49,44 @@ void OpenFlights::insertFlights() {
     infile.close();
 }
 
-//  Performs BFS to find route frtom start airport to destination airport
+//  Performs BFS begining with start
+vector<string> OpenFlights::BFS(int start) {
+    //  Mark all airports as not visited
+    vector<bool> visited(12058);    //  highest airport ID #
+    for (unsigned i=0; i<12058; i++) {
+        visited[i] = false;
+    }
+    //  initialize BFS
+    queue<int> airportQueue;    //  queue for BFS
+    queue<int> searchQueue;  //  order of airports visited during BFS
+    airportQueue.push(start);   //  enqueue first airport
+    searchQueue.push(start);
+    int current = start;    //  current airport being visited
+
+    //  BFS
+    while (!airportQueue.empty()) {
+        current = airportQueue.front();
+        for (auto it=flightMap_.airportMap[current].departures.begin(); it!=flightMap_.airportMap[current].departures.end(); it++) {    //  search all departures from current airport
+            if (!visited[it->first]) {  //  next airport has not been visited
+                searchQueue.push(it->first);  //  add airport to BFS search
+                airportQueue.push(it->first);   //  enqueue next airport
+                visited[it->first] = true;
+            }
+        }
+        airportQueue.pop();
+    }
+
+    //  convert airport IDs to Airport Code
+    vector<string> search;
+    while (!searchQueue.empty()) {
+        int ap = searchQueue.front();
+        search.push_back(flightMap_.idToCodeMap[ap]);
+        searchQueue.pop();
+    }
+    return search;
+}
+
+//  Performs BFS to find route from start airport to destination airport then stops search
 vector<string> OpenFlights::BFS(int start, int destination) {
     //  Mark all airports as not visited
     vector<bool> visited(12058);    //  highest airport ID #
@@ -96,7 +133,7 @@ vector<string> OpenFlights::BFS(int start, int destination) {
     vector<string> path;
     while (!pathId.empty()) {
         int ap = pathId.top();
-        path.push_back(flightMap_.idToCodeMap[ap]);  //  To Do: add city or name (change path to vector<pair<string, string>>)
+        path.push_back(flightMap_.idToCodeMap[ap]);
         pathId.pop();
     }
     return path;
@@ -155,10 +192,21 @@ tuple<vector<string>,double> OpenFlights::dijkstra(int start, int destination) {
     vector<string> path;
     while (!pathId.empty()) {
         int ap = pathId.top();
-        path.push_back(flightMap_.idToCodeMap[ap]);  //  To Do: add city or name (change path to vector<pair<string, string>>)
+        path.push_back(flightMap_.idToCodeMap[ap]);
         pathId.pop();
     }
     tuple<vector<string>,double> shortestPath(path, distanceFromStart[destination]);    //  create tuple of path and total distance
+    return shortestPath;
+}
+
+// Performs landmark algorithm to find shortest distance between start and destination airports going through landmark
+tuple<vector<string>,double> OpenFlights::landmark(int start, int landmark, int destination) {
+    tuple<vector<string>,double> firstPath = dijkstra(start, landmark);
+    tuple<vector<string>,double> secondPath = dijkstra(landmark, destination);
+    vector<string> path = get<0>(firstPath);
+    path.insert(path.end(), get<0>(secondPath).begin()+1, get<0>(secondPath).end());
+    double distance = get<1>(firstPath) + get<1>(secondPath);
+    tuple<vector<string>,double> shortestPath(path, distance);    //  create tuple of path and total distance
     return shortestPath;
 }
 
