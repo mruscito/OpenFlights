@@ -1,7 +1,10 @@
 # chienhn2-lbn2-jamestp3-ruscito2
 Final Project - Open Flights
 
-###### This is an <h6> tag
+# How does our project work?
+Our program uses data from https://openflights.org/data.html to find the shortest path between two airports, using how ever many layovers as needed.
+
+or sanitizing data provided by the CSV database, the information is first separated and outputted into a formatted XML file.
 
 *To edit input:*
 
