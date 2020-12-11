@@ -16,3 +16,7 @@ main.cpp file was updated in order to take input from the user for the starting 
 is given through the terminal and the output is printed to the terminal, so next week we will need to change this manage I/O through TXT files.
 
 Week 4:
+I/O was converted to come from input.txt and output to output.txt, terminal still prints progress of program for easy debugging purposes. Landmark algorithm was added, BFS was fixed to perform
+a complete traversal. We kept the original BFS that stops at the final destination as well. Dijkstra's was debugged for the case when there are no commercial flights connecting the start to
+destination. main.cpp was editted in order to perform one BFS (since a BFS is essentially the same no matter where the start location is so performing multiple would just be redundant) and
+then take continuous inputs for the shortest path algorithms until the end of input.txt. Code has been extensively tested and is complete.
