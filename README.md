@@ -1,6 +1,8 @@
 # chienhn2-lbn2-jamestp3-ruscito2
 Final Project - Open Flights
 
+###### This is an <h6> tag
+
 *To edit input:*
 
 Open input.txt, enter IATA codes of desired airports (3-letter codes ex. Chicago Midway -> MDW).
