@@ -1,10 +1,47 @@
+The program will first scan for the starting location for the BFS. If location is invalid, it will continue to scan for next valid input.
+Only 1 BFS is performed because of redundancy of multiple searches.
+
+Then the program will perform shortest path algorithms on locations in this file until the end of the file.
+Program will first scan for starting location. If location is invalid, it will continue to scan for next valid input.
+(NA is an invalid input)
+After a valid input, the program will scan scan again for destination.
+After a valid input again, the program will scan one last time for a landmark (stop between start and destination)
+Order of inputs for shortest path algorithms:
+Starting location
+Destination location
+Landmark location
+
+****************Edit below to change inputs****************
+
+Starting location for BFS:
+(Champaign, IL)
+CMI
+
+Shortest Path Algorithm Searches:
+(Champaign, IL to Sacramento, CA; landmark in Dallas, TX)
 CMI
 NA
 NA
 NA
 SMF
+NA
+NA
+DFW
 
-// The program will first scan for starting location. If location is invalid, it will continue to scan for next valid input.
-// After a valid input, the program will scan scan again for destination using step 1.
-// Program will stop scanning as soon as it finds 2 valid inputs
-// NA is an invalid input
+(Champaign, IL to Goroka, Papua New Guinea; landmark in London, UK)
+(Capitalization does not matter for inputs)
+cmi
+GKA
+LgW
+
+(New York, NY to Hornafjörður, Iceland; landmark in Toronto, Canada)
+(This will fail because there are no commercial flights to Hornafjörður, Iceland)
+JFK
+HFN
+YYZ
+
+(Chicago, IL (Midway) to London, UK (Heathrow); landmark in Winnipeg, Canada)
+(Lankmark will fail because there are no commercial flights to Winnipeg, Canada)
+MDW
+LHR
+YAV

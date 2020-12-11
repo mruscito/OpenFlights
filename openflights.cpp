@@ -141,6 +141,11 @@ vector<string> OpenFlights::BFS(int start, int destination) {
 
 //  Performs Dijkstra's algorithm to find shortest path between start and destination airports
 tuple<vector<string>,double> OpenFlights::dijkstra(int start, int destination) {
+    if (flightMap_.airportMap[start].departures.empty() || flightMap_.airportMap[destination].departures.empty()) { //  case that no commercial flights connect start and destination
+        tuple<vector<string>,double> T;
+        return T;
+    }
+
     vector<double> distanceFromStart(12058);    //  total distance from start to current airport
     vector<int> previous(12058); //  maintains previous airport visited (with shortest distance to start)
     vector<int> unvisited;   //  all unvisited airports
@@ -203,14 +208,19 @@ tuple<vector<string>,double> OpenFlights::dijkstra(int start, int destination) {
 tuple<vector<string>,double> OpenFlights::landmark(int start, int landmark, int destination) {
     tuple<vector<string>,double> firstPath = dijkstra(start, landmark);
     tuple<vector<string>,double> secondPath = dijkstra(landmark, destination);
-    vector<string> path = get<0>(firstPath);
+    if (get<0>(firstPath).empty() || get<0>(secondPath).empty()) {  //  no path could be found between start and destination while stopping at landmark
+        tuple<vector<string>,double> T;
+        return T;
+    }
+    vector<string> path = get<0>(firstPath);    //  append paths together
     path.insert(path.end(), get<0>(secondPath).begin()+1, get<0>(secondPath).end());
-    double distance = get<1>(firstPath) + get<1>(secondPath);
+    double distance = get<1>(firstPath) + get<1>(secondPath);   //  add distances together
     tuple<vector<string>,double> shortestPath(path, distance);    //  create tuple of path and total distance
     return shortestPath;
 }
 
 int OpenFlights::convertToId(string location) {
+    if (location == "") return -1;
     unordered_map<string, int>::iterator it;
     int id = -1;
     transform(location.begin(), location.end(), location.begin(), [](unsigned char c){return toupper(c); });
