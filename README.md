@@ -1,6 +1,6 @@
-#Final Project - Open Flights
+# Final Project - Open Flights
 
-###Group members:
+### Group members:
 * ruscito2
 * lbn2
 * chienhn2
@@ -42,8 +42,8 @@ Run this command in the terminal:
 
 Your results will export automatically in terminal window or you can open the 'output.txt' file which is located in your root folder.
 
-Example about the results:
+### Example about the results:
 ![GitHub Logo](/images/example.png)
 
-OUTPUT.TXT
+### OUTPUT.TXT
 ![GitHub Logo](/images/output.png)
