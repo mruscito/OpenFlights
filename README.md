@@ -7,7 +7,6 @@ Our program uses data from https://openflights.org/data.html to find the shortes
 Example:
 
 ![GitHub Logo](/images/example.png)
-Format: ![Alt Text](url)
 
 # How to use our program?
 *To edit input:*
