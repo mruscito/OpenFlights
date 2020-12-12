@@ -7,7 +7,7 @@
 * jamestp3
 
 # How does our project work?
-Our program uses data from Open Flights![GitHub](http://github.com) to find the shortest path between two airports.
+Our program uses data from [Open Flights](https://openflights.org/data.html) to find the shortest path between two airports.
 We use BFS Traversal to find the shortest airports can land to and Dijkstra's algorithm to calculate the total distances of the trip. 
 
 # How to use our program?
