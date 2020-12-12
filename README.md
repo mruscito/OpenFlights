@@ -1,8 +1,14 @@
-# chienhn2-lbn2-jamestp3-ruscito2
-Final Project - Open Flights
+#Final Project - Open Flights
+
+###Group members:
+* ruscito2
+* lbn2
+* chienhn2
+* jamestp3
 
 # How does our project work?
 Our program uses data from https://openflights.org/data.html to find the shortest path between two airports, using how ever many layovers as needed.
+
 
 # How to use our program?
 
