@@ -4,8 +4,12 @@ Final Project - Open Flights
 # How does our project work?
 Our program uses data from https://openflights.org/data.html to find the shortest path between two airports, using how ever many layovers as needed.
 
-or sanitizing data provided by the CSV database, the information is first separated and outputted into a formatted XML file.
+Example:
 
+![GitHub Logo](/images/example.png)
+Format: ![Alt Text](url)
+
+# How to use our program?
 *To edit input:*
 
 Open input.txt, enter IATA codes of desired airports (3-letter codes ex. Chicago Midway -> MDW).
