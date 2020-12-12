@@ -12,6 +12,12 @@ We use BFS Traversal to find the shortest airports can land to and Dijkstra's al
 
 # How to use our program?
 
+To download our program, please copy and paste this line to your terminal:
+
+```
+git clone https://github-dev.cs.illinois.edu/cs225-fa20/chienhn2-lbn2-jamestp3-ruscito2.git
+```
+
 ### First you will need to edit input:
 
 Open **input.txt**, enter **IATA codes** of desired airports (3-letter codes ex. Chicago Midway -> MDW).
